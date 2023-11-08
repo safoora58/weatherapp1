@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="css/bootstrap-5.3/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="css/bootstrap-5.3/bootstrap.rtl.min.css.map">
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="css/bootstrap-5.3/font_bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <script src="https://kit.fontawesome.com/dddb319617.js" crossorigin="anonymous"></script>
+
+  <title>Weather App </title>
+</head>
+
+<body>
+  <video id="background-video" autoplay loop muted></video>
+
+  <div class="container pb-3">
+    <div class="row search-container h-25">
+      <div class="col d-flex flex-column justify-content-center align-items-center">
+        <div class=" search-element d-flex justify-content-center align-items-stretch position-relative mt-4 mb-2">
+          <div class="input-container mb-4 d-flex">
+            <input type="text" class=" me-2 " placeholder="Enter Your Location..." id="city-search-box"
+              onkeyup="findCity()" onclick="findCity()">
+            <div class="location">
+              <img src="images/location.png">
+            </div>
+          </div>
+
+          <div class="search-list " id="search-list ">
+            <!-- <div class="search-list-item d-flex align-items-center">
+              <div class="search-item-info me-3 ">
+                <p class="fw-bold mt-2 opacity-75">shiraz,Fars,Iran</p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center ">
+      <div class="col-10 col-md-5 City-Info pb-3 mb-2">
+        <div class="row d-flex flex-column City-Infotext">
+          <div class="col text-center pic-info mt-2 pt-4 maincitypic">
+            <img src="images/Thunderstorm 2.jpg ">
+          </div>
+          <div id="text-d">
+            <div class="col text-center mb-3 mt-3 fw-bold fs-4 City-Info-p city animation">
+              city , country
+            </div>
+            <div class="col text-center mb-1 fw-bold City-Info-p temp animation tempmain">0 °C</div>
+            <div class="col text-center mb-4 fw-bold City-Info-we temp animation">cloudy</div>
+            <div class="col text-center mb-1 fw-bold City-Info-p hi-low-temp animation">0 °C / 0 °C</div>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center text-center fw-bold City-Info-time mb-2">
+            <div class="weekdayname">
+              <div class="weekday-name ms-1" id="weekday-name">sunday ,</div>
+            </div>
+            <div class="time">
+              <div class="hour-num" id="hour-num">10:</div>
+            </div>
+            <div class="time ms-1">
+              <div class="minute-num" id="minute-num">35</div>
+            </div>
+            <div id="ap">
+              <div id="ampm">AM</div>
+            </div>
+          </div>
+          <div
+            class="col d-flex justify-content-center align-items-center text-center fw-bold City-Info-p maindate mb-2">
+            <div class="date-detaile">
+              <div class="date-name month-name ms-1" id="month-name">july ,</div>
+            </div>
+            <div class="date-detaile ms-1">
+              <div class="date-name" id="day-number">17 </div>
+            </div>
+            <div class="date-detaile ">
+              <div class="date-name " id="year">2022</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 d-flex justify-content-center align-items-center ">
+        <!-- <div class="row mb-2 mb-md-5 d-flex justify-content-center">
+          <div class="col-12 col-md-8">
+            <img src="images/map.jpg" class="radar w-100 pt-2 pt-md-0 ">
+          </div>
+        </div> -->
+        <div class="row d-flex justify-content-center align-items-center me-3">
+          <div class="col-5 mb-3 ms-3 details-today h-75">
+            <div class="row">
+              <div class="col-5 text-start "><img class="image mt-2 pb-2" src="images/humi.png"></div>
+              <div class="col-7 detail-weather text-end  ">
+                <p class="mt-2 details-text ">humidity</p>
+                <p class="details-text humidity ">%0</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 mb-3 ms-3 details-today  h-75">
+            <div class="row ">
+              <div class="col-5 text-start"><img class="image mt-2 pb-0" src="images/wind.png"></div>
+              <div class="col-7 detail-weather text-end pe-1 ">
+                <p class="mt-2 details-text">wind speed</p>
+                <p class="details-text wind ">0mph</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-lg-5 mb-3 ms-3 details-today ">
+            <div class="row">
+              <div class="col-5 text-start"><img class="image mt-2 pb-0" src="images/feel.png"></div>
+              <div class="col-7 detail-weather text-end pe-1 ">
+                <p class="mt-2 details-text">feels like</p>
+                <p class="details-text feels-like ">0 °C</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-lg-5 mb-3 ms-3 details-today ">
+            <div class="row ">
+              <div class="col-5 text-start"><img class="image mt-2 pb-0" src="images/icons8-pressure-50.png"></div>
+              <div class="col-7 detail-weather text-end pe-1 ">
+                <p class="mt-2 details-text">pressure</p>
+                <p class="details-text pressure ">0 in</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-lg-5 mb-3 ms-3 details-today ">
+            <div class="row ">
+              <div class="col-5 text-start"><img class="image mt-2 pb-0" src="images/visible.png"></div>
+              <div class="col-7 detail-weather text-end pe-1 ">
+                <p class="mt-2 details-text">visibility</p>
+                <p class="details-text visibility ">0 mi</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-lg-5 mb-3 ms-3 details-today ">
+            <div class="row ">
+              <div class="col-5 text-start"><img class="image mt-2 pb-0" src="images/desc.png"></div>
+              <div class="col-7 detail-weather text-end pe-0 ">
+                <p class="mt-2 details-text">description</p>
+                <p class="details-text description">------------------</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-lg-5 mb-3 ms-3">
+            <div class="row details-today">
+              <div class="col-5 text-start"><img class="image mt-2 pb-0" src="images/sunrise.png"></div>
+              <div class="col-7 detail-weather text-end pe-2 ">
+                <p class="mt-2 details-text">sunrise</p>
+                <p class="details-text sunrise ">time :</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-lg-5 mb-3 ms-3">
+            <div class="row details-today ">
+              <div class="col-5 text-start"><img class="image mt-2 pb-0" src="images/sunset.png"></div>
+              <div class="col-7 detail-weather text-end pe-2 ">
+                <p class="mt-2 details-text">sunset</p>
+                <p class="details-text sunset ">time :</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 ">
+      <div class="col-12 fw-bold fs-5 text-center ">
+        <p class="text-5">5 Day Forecast</p>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center forecast-main me-1 me-md-0">
+      <div class="row d-flex justify-content-center forcast-info ">
+        <div class="col-11 col-md-3 col-lg-2 details-forecast ms-3 mb-2">
+          <div class="row mt-1 filter">
+            <div class="row me-0 ">
+              <p class="pt-2 mb-2 fw-bold weekday pb-2 text-center">day</p>
+            </div>
+            <div class="col-6 text-start">
+              <img class="img-forecast mt-2" src="images/rain.png">
+            </div>
+            <div class="col-6 tempreture text-end fw-bold mt-2 fs-6">
+              <p>0 °C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-11 col-md-3 col-lg-2 details-forecast ms-3 mb-2">
+          <div class="row mt-1">
+            <div class="row me-0 ">
+              <p class="pt-2 mb-2 fw-bold weekday pb-2 text-center">day</p>
+            </div>
+            <div class="col-6 text-start">
+              <img class="img-forecast mt-2" src="images/thunderstorm.png">
+            </div>
+            <div class="col-6 tempreture text-end fw-bold mt-2 fs-6">
+              <p>0 °C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-11 col-md-3 col-lg-2 details-forecast ms-3 mb-2">
+          <div class="row mt-1">
+            <div class="row me-0 ">
+              <p class="pt-2 mb-2 fw-bold weekday pb-2 text-center">day</p>
+            </div>
+            <div class="col-6 text-start">
+              <img class="img-forecast mt-2" src="images/snow.png">
+            </div>
+            <div class="col-6 tempreture text-end fw-bold mt-2 fs-6">
+              <p>0 °C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-11 col-md-3 col-lg-2 details-forecast ms-3 mb-2">
+          <div class="row mt-1">
+            <div class="row me-0 ">
+              <p class="pt-2 mb-2 fw-bold weekday pb-2 text-center">day</p>
+            </div>
+            <div class="col-6 text-start">
+              <img class="img-forecast mt-1" src="images/sun.png">
+            </div>
+            <div class="col-6 tempreture text-end fw-bold mt-2 fs-6">
+              <p>0 °C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-11 col-md-3 col-lg-2 mb-2 details-forecast ms-3 ">
+          <div class="row mt-1">
+            <div class="row me-0 ">
+              <p class="pt-2 mb-2 fw-bold weekday pb-2 text-center">day</p>
+            </div>
+            <div class="col-6 text-start">
+              <img class="img-forecast mt-2" src="images/sunny.png">
+            </div>
+            <div class="col-6 tempreture text-end fw-bold mt-2 fs-6">
+              <p>0 °C</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/weather-app.js"></script>
+  <script src="js/bootstrap5.3/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap5.3/bootstrap.bundle.js"></script>
+  <script src="js/bootstrap5.3/bootstrap.min.js"></script>
+</body>
+
+</html>
